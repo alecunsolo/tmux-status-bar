@@ -25,6 +25,9 @@ FG="${fg}"
 MAIN_BG=${blue}
 MAIN_FG=${dark3}
 
+WIN_FG="$MAIN_BG"
+WIN_BG="$MAIN_FG"
+
 # Status bar
 tmux_set "status-position" "bottom"
 tmux_set "status-justify" "left"
@@ -37,3 +40,7 @@ tmux_set "status-fg" "${FG}"
 
 tmux_set "status-left-style" "bg=${MAIN_BG},fg=${MAIN_FG}"
 tmux_set "status-right-style" "bg=${MAIN_BG},fg=${MAIN_FG}"
+
+# Left segment
+LS=" ${session_icon} #S #[bg=${WIN_BG},fg=${WIN_FG}]${larrow}"
+tmux_set "status-left" "${LS}"
