@@ -22,6 +22,9 @@ tmux_set() {
 BG="${bg_dark}"
 FG="${fg}"
 
+MAIN_BG=${blue}
+MAIN_FG=${dark3}
+
 # Status bar
 tmux_set "status-position" "bottom"
 tmux_set "status-justify" "left"
@@ -31,3 +34,6 @@ tmux_set "status-right-length" 100
 
 tmux_set "status-bg" "${BG}"
 tmux_set "status-fg" "${FG}"
+
+tmux_set "status-left-style" "bg=${MAIN_BG},fg=${MAIN_FG}"
+tmux_set "status-right-style" "bg=${MAIN_BG},fg=${MAIN_FG}"
