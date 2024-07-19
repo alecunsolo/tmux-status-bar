@@ -44,3 +44,16 @@ tmux_set "status-right-style" "bg=${MAIN_BG},fg=${MAIN_FG}"
 # Left segment
 LS=" ${session_icon} #S #[bg=${WIN_BG},fg=${WIN_FG}]${larrow}"
 tmux_set "status-left" "${LS}"
+
+# Window segment
+tmux_set "window-status-separator" "#[bg=${WIN_BG},fg=${WIN_FG}]${lseparator}"
+
+tmux_set "window-status-style"         "bg=${WIN_BG},fg=${WIN_FG}"
+tmux_set "window-status-current-style" "bg=${WIN_BG},fg=${FG} bold"
+tmux_set "window-status-last-style"    "bg=${WIN_BG},fg=${WIN_FG} italics"
+
+last_segment="#{?window_end_flag,#[bg=${BG}#,fg=${WIN_BG}]${larrow},}"
+WF="#I:#W#F${last_segment}"
+
+tmux_set "window-status-format" "$WF"
+tmux_set "window-status-current-format" "$WF"
