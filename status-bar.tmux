@@ -39,7 +39,7 @@ WIN_FG="$MAIN_BG"
 WIN_BG="${fg_gutter}"
 
 # Status bar
-tmux_set "status-position" "bottom"
+tmux_set "status-position" "top"
 tmux_set "status-justify" "left"
 
 tmux_set "status-left-length" 100
