@@ -32,11 +32,11 @@ tmux_set() {
 BG="${bg_dark}"
 FG="${fg}"
 
-MAIN_BG=${blue}
-MAIN_FG=${dark3}
+MAIN_BG="${blue}"
+MAIN_FG="${bg_highlight}"
 
 WIN_FG="$MAIN_BG"
-WIN_BG="$MAIN_FG"
+WIN_BG="${fg_gutter}"
 
 # Status bar
 tmux_set "status-position" "bottom"
@@ -49,7 +49,7 @@ tmux_set "status-bg" "${BG}"
 tmux_set "status-fg" "${FG}"
 
 tmux_set "status-left-style" "bg=${MAIN_BG},fg=${MAIN_FG}"
-tmux_set "status-right-style" "bg=${MAIN_BG},fg=${MAIN_FG}"
+tmux_set "status-right-style" "bg=${BG},fg=${MAIN_BG}"
 
 # Left segment
 LS=" ${session_icon} #S #[bg=${WIN_BG},fg=${WIN_FG}]${larrow}"
@@ -71,7 +71,7 @@ tmux_set "window-status-current-format" "$WF"
 # Right segment
 host_segment="#[bg=${WIN_BG},fg=${MAIN_BG}]${rarrow}#[bg=${MAIN_BG},fg=${MAIN_FG}] ${host_icon} $(get_hostname)"
 user_segment="#[bg=${BG},fg=${WIN_BG}]${rarrow}#[bg=${WIN_BG},fg=${WIN_FG}] ${user_icon} $(whoami)"
-prefix_segment="#[bg=${BG},fg=${MAIN_BG}]#{?window_zoomed_flag,${zoom_icon},} #{prefix_highlight}"
-RS="${prefix_segment} ${user_segment}${host_segment}"
+prefix_segment="#{prefix_highlight} #{?window_zoomed_flag,${zoom_icon},} "
+RS="${prefix_segment}${user_segment}${host_segment}"
 
 tmux_set "status-right" "$RS"
