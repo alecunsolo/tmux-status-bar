@@ -71,7 +71,17 @@ tmux_set "window-status-current-format" "$WF"
 # Right segment
 host_segment="#[bg=${WIN_BG},fg=${MAIN_BG}]${rarrow}#[bg=${MAIN_BG},fg=${MAIN_FG}] ${host_icon} $(get_hostname)"
 user_segment="#[bg=${BG},fg=${WIN_BG}]${rarrow}#[bg=${WIN_BG},fg=${WIN_FG}] ${user_icon} $(whoami)"
-prefix_segment="#{prefix_highlight} #{?window_zoomed_flag,${zoom_icon},} "
-RS="${prefix_segment}${user_segment}${host_segment}"
+
+prefix_text="${rseparator} ${prefix_icon} "
+prefix_segment="#{?client_prefix,${prefix_text},}"
+zoom_text="${rseparator} ${zoom_icon} "
+zoom_segment="#{?window_zoomed_flag,${zoom_text},}"
+sync_text="${rseparator} ${sync_icon} "
+sync_segment="#{?pane_synchronized,${sync_text},}"
+copy_text="${rseparator} ${copy_icon}"
+copy_segment="#{?#{==:#{pane_mode},copy-mode},${copy_text} ,}"
+
+notification_segment="${prefix_segment}${zoom_segment}${sync_segment}${copy_segment}"
+RS="${notification_segment}${user_segment}${host_segment}"
 
 tmux_set "status-right" "$RS"
